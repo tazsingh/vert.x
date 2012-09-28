@@ -22,9 +22,6 @@ buildscript {
 		maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 		mavenCentral()
 	}
-	dependencies {
-		classpath "org.vert-x:build-tools:$vertxBuildToolsVersion"
-	}
 } 
 
 allprojects {
@@ -126,6 +123,9 @@ task assemble(type: Copy, dependsOn: ['preflight', subprojects.assemble]) {
     from file("src/dist/client/vertxbus.js")
   }
   into('examples/ruby/eventbusbridge') {
+    from file("src/dist/client/vertxbus.js")
+  }
+  into('examples/javascript/eventbusbridgelistener') {
     from file("src/dist/client/vertxbus.js")
   }
   into('examples/groovy/webapp/web/js') {
